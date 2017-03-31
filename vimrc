@@ -3,7 +3,7 @@ let mapleader = ';'
 let g:mapleader = ';'
 
 " 开启语法高亮
-syntax on
+" syntax on
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -134,8 +134,8 @@ set foldenable
 " syntax    使用语法定义折叠
 " diff      对没有更改的文本进行折叠
 " marker    使用标记进行折叠, 默认标记是 {{{ 和 }}}
-set foldmethod=indent
-set foldlevel=99
+set foldmethod=manual
+" set foldlevel=99
 " 代码折叠自定义快捷键 <leader>zz
 let g:FoldMethod = 0
 map <leader>zz :call ToggleFold()<cr>
@@ -179,12 +179,12 @@ set ttyfast
 set nrformats=
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
+" set relativenumber number
+" au FocusLost * :set norelativenumber number
+" au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-autocmd InsertEnter * :set norelativenumber number
-autocmd InsertLeave * :set relativenumber
+" autocmd InsertEnter * :set norelativenumber number
+" autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -403,8 +403,11 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " tab/buffer相关
 
 " 切换前后buffer
-nnoremap [b :bprevious<cr>
-nnoremap ]b :bnext<cr>
+" nnoremap [b :bprevious<cr>
+" nnoremap ]b :bnext<cr>
+" nnoremap <leader><tab> :bnext<cr>
+nnoremap <TAB> :bnext<cr>
+nnoremap <S-TAB> :bprevious<cr>
 nmap <Leader>d :bd<CR>
 
 
@@ -467,8 +470,17 @@ map Y y$
 
 " 复制选中区到系统剪切板中
 vnoremap <leader>y "+y
-noremap <leader>p "+p
+nnoremap <leader>y "+yy
+nnoremap <leader>p "+p
 
+nnoremap <leader>ay "ayy
+nnoremap <leader>by "byy
+vnoremap <leader>ay "ay
+vnoremap <leader>by "ay
+
+nnoremap <leader>ap "ap
+nnoremap <leader>bp "bp
+ 
 " auto jump to end of select
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
@@ -525,6 +537,8 @@ autocmd BufRead,BufNewFile *.part set filetype=html
 autocmd BufRead,BufNewFile *.vue set filetype=html
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
+
+
 
 
 
@@ -606,6 +620,7 @@ if has("gui_running")
     if has("gui_gtk2")   "GTK2
         set guifont=Monaco\ 11,Monospace\ 11
     endif
+    set mouse=a
     set guioptions-=T
     set guioptions+=e
     set guioptions-=r
@@ -613,7 +628,9 @@ if has("gui_running")
     set guitablabel=%M\ %t
     set showtabline=1
     set linespace=2
-    set noimd
+    set noimdisable
+    autocmd! InsertLeave * set imdisable|set iminsert=0
+    autocmd! InsertEnter * set noimdisable|set iminsert=0
     set t_Co=256
 endif
 
@@ -663,6 +680,7 @@ highlight SpellLocal term=underline cterm=underline
     nmap <Leader>{ $a{
     nmap <Leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 
+    
 " }}}
 
 
