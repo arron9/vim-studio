@@ -13,6 +13,7 @@ Plug 'scrooloose/nerdcommenter'
 " multiplecursors
 Plug 'terryma/vim-multiple-cursors'
 
+Plug 'godlygeek/tabular'
 
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
@@ -422,3 +423,12 @@ call plug#end()
     nnoremap <silent><leader>pf :call PhpCsFixerFixFile()<CR>
     " autocmd FileType php autocmd BufWritePre <buffer> :call PhpCsFixerFixFile()
 " }}}
+
+
+"Tabularize{{{
+nmap <leader>b= :Tabularize /=<CR>
+vmap <leader>b= :Tabularize /=<C>
+nmap <leader>b: :Tabularize /:\zs<CR>
+vmap <leader>b: :Tabularize /:\zs<CR>
+"}}}
+

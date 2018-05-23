@@ -1,9 +1,9 @@
 " 修改leader键
-let mapleader = ';'
-let g:mapleader = ';'
+let mapleader = ','
+let g:mapleader = ','
 
 " 开启语法高亮
-" syntax on
+syntax on
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -20,6 +20,7 @@ set history=2000
 filetype on
 " 针对不同的文件类型采用不同的缩进格式
 filetype indent on
+
 " 允许插件
 filetype plugin on
 " 启动自动补全
@@ -54,9 +55,9 @@ set cursorline
 
 
 " 鼠标暂不启用, 键盘党....
-set mouse-=a
+"set mouse-=a
 " 启用鼠标
-" set mouse=a
+set mouse=v
 " Hide the mouse cursor while typing
 " set mousehide
 
@@ -179,12 +180,12 @@ set ttyfast
 set nrformats=
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
-" set relativenumber number
-" au FocusLost * :set norelativenumber number
-" au FocusGained * :set relativenumber
+set relativenumber number
+ au FocusLost * :set norelativenumber number
+ au FocusGained * :set relativenumber
 " 插入模式下用绝对行号, 普通模式下用相对
-" autocmd InsertEnter * :set norelativenumber number
-" autocmd InsertLeave * :set relativenumber
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
   if(&relativenumber == 1)
     set norelativenumber number
@@ -406,9 +407,9 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 " nnoremap [b :bprevious<cr>
 " nnoremap ]b :bnext<cr>
 " nnoremap <leader><tab> :bnext<cr>
-nnoremap <TAB> :bnext<cr>
-nnoremap <S-TAB> :bprevious<cr>
-nmap <Leader>d :bd<CR>
+"nnoremap <TAB> :bnext<cr>
+"nnoremap <S-TAB> :bprevious<cr>
+"nmap <Leader>d :bd<CR>
 
 
 " 使用方向键切换buffer
@@ -640,8 +641,8 @@ endif
 " set background=dark
 set t_Co=256
 
-colorscheme dracula
-" colorscheme solarized
+"colorscheme dracula
+ colorscheme solarized
 " colorscheme molokai
 " colorscheme desert
 
@@ -683,6 +684,72 @@ highlight SpellLocal term=underline cterm=underline
     
 " }}}
 
+set paste
+
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS
+autocmd FileType html,tpl set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+
+nmap <leader>w :w<CR>
+
+nmap <leader>bn :bn<CR>
+nmap <leader>bp :bp<CR>
+nmap <leader>bl :bl<CR>
+nmap <leader>bf :bf<CR>
+
+"标签移动
+nmap tbn :tabn<CR>
+nmap tbp :tabp<CR>
+nmap tbc :tabc<CR>
+nmap tbo :tabo<CR>
+
+nmap <C-H>  <C-W><C-H>
+nmap <C-K>  <C-W><C-K>
+nmap <C-J>  <C-W><C-J>
+nmap <C-L>  <C-W><C-L>
+nmap <C-T>  <C-W><C-T>
+nmap <C-X>  <C-W><C-X>
+
+nmap ne :NERDTreeToggle<CR>
+
+autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
+autocmd BufRead,BufNewFile *.part set filetype=html
+autocmd BufRead,BufNewFile *.vue set filetype=html
+" disable showmatch when use > in php
+au BufWinEnter *.php set mps-=<:>
+
+" autocmd VimEnter * NERDTree
+" 将 NERDTree 的窗口设置在 vim 窗口的右侧（默认为左侧）
+"let NERDTreeWinPos="right"
+" 当打开 NERDTree 窗口时，自动显示 Bookmarks
+let NERDTreeShowBookmarks=1
+"默认显示行号
+let NERDTreeShowLineNumbers=1
+
+let NERDChristmasTree=1
+let NERDTreeAutoCenter=1
+let NERDTreeBookmarksFile=$vim.'/data/NerdBookmarks.txt'
+let NERDTreeMouseMode=2
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeWinPos='right'
+
+ " NERDTree config
+ map <F2> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+" Allow saving of files as sudo when I forgot to start vim using sudo.
+ cmap w!! w !sudo tee > /dev/null %
+
+ inoremap jk <esc>
+
+set guifont=YaHei_Consolas_Hybrid:h16
+
+nnoremap <leader>q :q<CR>
 
 
-
+let g:Powerline_colorscheme='solarized256'
