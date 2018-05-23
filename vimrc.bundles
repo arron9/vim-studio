@@ -24,7 +24,7 @@ Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 Plug 'bronson/vim-trailing-whitespace'
 
 " nerdtree nerdtreetabs
-Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree' "| Plug 'jistr/vim-nerdtree-tabs'
 
 " ctrlp ctrlpfunky
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
@@ -188,21 +188,21 @@ call plug#end()
 
 " nerdtree nerdtreetabs {{{
     " map <leader>n :NERDTreeToggle<CR>
-    let NERDTreeHighlightCursorline=1
-    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-    " NERDTree 子窗口中不显示冗余帮助信息
-    let NERDTreeMinimalUI=1
-    let NERDTreeShowLineNumbers=1
+    " let NERDTreeHighlightCursorline=1
+    " let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    " " NERDTree 子窗口中不显示冗余帮助信息
+    " let NERDTreeMinimalUI=1
+    " let NERDTreeShowLineNumbers=1
 
-    "close vim if the only window left open is a NERDTree
+    " "close vim if the only window left open is a NERDTree
     " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
-    " s/v 分屏打开文件
-    let g:NERDTreeMapOpenSplit = 's'
-    let g:NERDTreeMapOpenVSplit = 'v'
+    " " s/v 分屏打开文件
+    " "let g:NERDTreeMapOpenSplit = 's'
+    " "let g:NERDTreeMapOpenVSplit = 'v'
 
-    " nerdtreetabs
-    map <Leader>n <plug>NERDTreeTabsToggle<CR>
-    " 关闭同步
+    " " nerdtreetabs
+    " map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    " " 关闭同步
     " let g:nerdtree_tabs_synchronize_view=0
     " let g:nerdtree_tabs_synchronize_focus=0
     " 是否自动开启nerdtree

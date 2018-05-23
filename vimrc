@@ -737,6 +737,8 @@ let NERDTreeMouseMode=2
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 let NERDTreeWinPos='right'
+let NERDTreeChDirMode = 2 
+let g:nerdtree_tabs_open_on_console_startup=0 
 
  " NERDTree config
  map <F2> :NERDTreeToggle<CR>
@@ -753,3 +755,25 @@ nnoremap <leader>q :q<CR>
 
 
 let g:Powerline_colorscheme='solarized256'
+
+highlight VertSplit ctermbg=blue ctermfg=0 
+set fillchars=vert:\|
+
+nmap <leader>e :e!<CR>
+"Fast reloading of the .vimrc
+map <silent> <leader>ss :source $HOME/.vimrc<cr>
+"Fast editing of .vimrc
+map <silent> <leader>ee :e $HOME/.vimrc<cr>
+"When .vimrc is edited, reload it
+autocmd! bufwritepost _vimrc source $HOME/.vimrc 
+
+set autoindent
+
+"被分割窗口之间显示空白
+set fillchars=vert:/
+set fillchars=stl:/
+set fillchars=stlnc:/
+
+set clipboard+=unnamed      " 共享外部剪贴板
+set autochdir               " 设定文件浏览器目录为当前目录
+
